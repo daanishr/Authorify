@@ -69,6 +69,7 @@ export default class ImageUpload extends Component {
     console.log(reqSVG);
     axios.post('http://172.16.27.128:3002/converttopdf', {
       svg: reqSVG,
+      image: "http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png"
     })
       .then(function (response) {
         console.log(response);
@@ -135,7 +136,14 @@ export default class ImageUpload extends Component {
           <use xlinkHref="#Chemistry" />
           <use xlinkHref="#Path" />
           <circle cx="50" cy="150" r="20" stroke="black" strokeWidth="1" fill="yellow" />
-          <image href="https://yt3.ggpht.com/a-/ACSszfH4rgI-WIVE6ZZqYZK-8oCZyEY_L8-FhvJarA=s900-mo-c-c0xffffffff-rj-k-no" x="90" y="0" width="50px" height="30px" />
+
+        {this.state.upload ?
+          <div>
+            <image href="http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png" x="90" y="0" width="50px" height="30px" />
+          </div>
+          : null
+        }
+         
           <text x="20" y="45" font-family='Courier' className="large">{this.state.value}</text>
           <text x="20" y="65" font-family='Helvetica' className="large">{this.state.author}</text>
         </svg>
@@ -149,7 +157,7 @@ export default class ImageUpload extends Component {
       </Button>
 
 
-        {this.state.upload ?
+        {/* {this.state.upload ?
           <div>
             <CloudinaryContext cloudName="dtt2cdx79">
               <Image publicId={this.state.imageUrl}>
@@ -157,8 +165,8 @@ export default class ImageUpload extends Component {
               </Image>
             </CloudinaryContext>
           </div>
-          : null
-        }
+          : null */}
+        
 
       </div>
     )
