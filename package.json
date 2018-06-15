@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.2.0",
+    "@material-ui/core": "^1.2.1",
     "autobind-decorator": "^2.1.0",
+    "axios": "^0.18.0",
     "cloudinary-react": "^1.0.6",
     "material-ui": "^0.20.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "save-svg-as-png": "^1.4.5",
     "uuid": "^3.2.1"
   },
   "scripts": {

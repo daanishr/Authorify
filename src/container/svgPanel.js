@@ -1,9 +1,8 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
 
-export default (ComposedComponent) => {
+
     
-    @autobind
     class SvgMap extends React.Component {
         constructor(props) {
             super(props);
@@ -97,21 +96,13 @@ export default (ComposedComponent) => {
                     onTouchEnd={this.onDragEnd}
                     onWheel={this.onWheel}>
                     <g transform={`matrix(${this.state.matrix.join(' ')})`}>
-                        <ComposedComponent
-                            {...other}
-                            pan={this.pan}
-                            zoom={this.zoom}
-                        ></ComposedComponent>
+                  
                     </g>
                 </svg>
             );
         }
     }
-}
 
-SvgMap.propTypes = {
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-};
+
 
 export default SvgMap;
