@@ -67,7 +67,7 @@ export default class ImageUpload extends Component {
 
     var reqSVG = svgTag.outerHTML;
     console.log(reqSVG);
-    axios.post('http://172.16.27.128:3002/converttopdf', {
+    axios.post('127.0.0.1:3002/createCover', {
       svg: reqSVG,
       image: "http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png"
     })
@@ -130,19 +130,15 @@ export default class ImageUpload extends Component {
           <input type="submit" value="Submit" />
         </form>
 
-        <svg id="svgTag" viewBox="0 0 300 200">
-          <use xlinkHref="#Triangle" />
-          <use xlinkHref="#Maths" />
-          <use xlinkHref="#Chemistry" />
-          <use xlinkHref="#Path" />
+        <svg id="svgTag" viewBox="0 0 3318 2460">
+        <rect width="3318" height="3318" style="fill:rgb(0,0,255);stroke-width:0;stroke:rgb(0,0,0)" />
           <circle cx="50" cy="150" r="20" stroke="black" strokeWidth="1" fill="yellow" />
 
-        {this.state.upload ?
+
           <div>
             <image href="http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png" x="90" y="0" width="50px" height="30px" />
           </div>
-          : null
-        }
+        
          
           <text x="20" y="45" font-family='Courier' className="large">{this.state.value}</text>
           <text x="20" y="65" font-family='Helvetica' className="large">{this.state.author}</text>
@@ -152,9 +148,7 @@ export default class ImageUpload extends Component {
           Approve and send for Printing
       </Button>
 
-        <Button variant="raised" className="rounded-btn rounded-btn--squarish" color="primary" size="large" onClick={this.handleUpload}>
-          Upload
-      </Button>
+       
 
 
         {/* {this.state.upload ?
