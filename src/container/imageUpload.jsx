@@ -15,7 +15,8 @@ export default class ImageUpload extends Component {
       imageUrl: 'user/upload.png',
       bookTitle: 'Book Title goes here',
       value: 'Book Title',
-      author: 'Author goes here'
+      author: 'Author goes here',
+      spine: 'Spine for book'
     }
     this.handleUpload = this.handleUpload.bind(this);
     this.handleBookChange = this.handleBookChange.bind(this);
@@ -67,7 +68,7 @@ export default class ImageUpload extends Component {
 
     var reqSVG = svgTag.outerHTML;
     console.log(reqSVG);
-    axios.post('127.0.0.1:3002/createCover', {
+    axios.post('https://127.0.0.1:3002/createcover', {
       svg: reqSVG,
       image: "http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png"
     })
@@ -79,6 +80,7 @@ export default class ImageUpload extends Component {
       })
       .catch(function (error) {
         console.log(error);
+        alert(error);
       });
 
   }
@@ -94,7 +96,10 @@ export default class ImageUpload extends Component {
     this.setState({ author: event.target.value });
     console.log(this.state.author);
   }
-
+  handleSpineChange(event) {
+    this.setState({ spine: event.target.value });
+    console.log(this.state.spine);
+  }
   handleSubmit(event) {
     alert('Book title' + this.state.bookTitle);
     //alert('Author' + this.state.author);
@@ -127,21 +132,23 @@ export default class ImageUpload extends Component {
             Author Name:
           <input value={this.state.author} onChange={this.handleAuthorChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <label>
+            Spine Text:
+          <input value={this.state.spine} name = "spine" onChange={this.handleSpineChange} />
+          </label>
         </form>
 
         <svg id="svgTag" viewBox="0 0 3318 2460">
-        <rect width="3318" height="3318" style="fill:rgb(0,0,255);stroke-width:0;stroke:rgb(0,0,0)" />
+        <rect width="3318" height="3318" fill="black" />
+        <rect x="1659" y="0" width="150" height="3318" fill="white" />
           <circle cx="50" cy="150" r="20" stroke="black" strokeWidth="1" fill="yellow" />
-
-
           <div>
             <image href="http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png" x="90" y="0" width="50px" height="30px" />
           </div>
         
          
-          <text x="20" y="45" font-family='Courier' className="large">{this.state.value}</text>
-          <text x="20" y="65" font-family='Helvetica' className="large">{this.state.author}</text>
+          <text x="2200" y="450" font-family='Courier' transform="rotate(50 10,10)" font-size="100" fill="red" className="large">{this.state.value}</text>
+          <text x="2200" y="1800" font-family='Helvetica' font-size="90" fill="white" className="large">{this.state.author}</text>
         </svg>
 
         <Button variant="raised" className="rounded-btn rounded-btn--squarish" color="secondary" size="large" onClick={this.getSvgTag}>
