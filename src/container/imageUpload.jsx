@@ -68,7 +68,7 @@ export default class ImageUpload extends Component {
 
     var reqSVG = svgTag.outerHTML;
     console.log(reqSVG);
-    axios.post('https://127.0.0.1:3002/createcover', {
+    axios.post('http://127.0.0.1:3002/createcover', {
       svg: reqSVG,
       image: "http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png"
     })
