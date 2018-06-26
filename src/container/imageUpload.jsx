@@ -138,19 +138,7 @@ export default class ImageUpload extends Component {
           </label>
         </form>
         <Button onClick={this.handleUpload}>Upload</Button>
-        <svg id="svgTag" viewBox="0 0 331 246">
-        <rect width="331" height="331" fill="black" />
-        <rect x="165" y="0" width="15" height="331" fill="white" />
-          <circle cx="50" cy="150" r="20" stroke="black" strokeWidth="1" fill="yellow" />
-          <div>
-            <image href="https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?auto=compress&cs=tinysrgb&h=350" x="90" y="0" width="50px" height="30px" />
-          </div>
-
-          
-         
-          <text x="220" y="45" font-family='Courier' font-size="10" fill="red" className="large">{this.state.value}</text>
-          <text x="220" y="180" font-family='Helvetica' font-size="9" fill="white" className="large">{this.state.author}</text>
-        </svg>
+        <svg id="svgTag" viewBox="0 0 400 92"><rect x="0" y="0" width="200" height="290" fill="yellow" stroke="green" stroke-width="1"></rect><rect x="200" y="0" width="156" height="260" fill="yellow" stroke="red" stroke-width="1"></rect></svg>
 
 {this.state.upload ?
   <div>
