@@ -137,20 +137,30 @@ export default class ImageUpload extends Component {
           <input value={this.state.spine} name = "spine" onChange={this.handleSpineChange} />
           </label>
         </form>
-
-        <svg id="svgTag" viewBox="0 0 3318 2460">
-        <rect width="3318" height="3318" fill="black" />
-        <rect x="1659" y="0" width="150" height="3318" fill="white" />
+        <Button onClick={this.handleUpload}>Upload</Button>
+        <svg id="svgTag" viewBox="0 0 331 246">
+        <rect width="331" height="331" fill="black" />
+        <rect x="165" y="0" width="15" height="331" fill="white" />
           <circle cx="50" cy="150" r="20" stroke="black" strokeWidth="1" fill="yellow" />
           <div>
-            <image href="http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png" x="90" y="0" width="50px" height="30px" />
+            <image href="https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?auto=compress&cs=tinysrgb&h=350" x="90" y="0" width="50px" height="30px" />
           </div>
-        
+
+          
          
-          <text x="2200" y="450" font-family='Courier' transform="rotate(50 10,10)" font-size="100" fill="red" className="large">{this.state.value}</text>
-          <text x="2200" y="1800" font-family='Helvetica' font-size="90" fill="white" className="large">{this.state.author}</text>
+          <text x="220" y="45" font-family='Courier' font-size="10" fill="red" className="large">{this.state.value}</text>
+          <text x="220" y="180" font-family='Helvetica' font-size="9" fill="white" className="large">{this.state.author}</text>
         </svg>
 
+{this.state.upload ?
+  <div>
+    <CloudinaryContext cloudName="dtt2cdx79">
+      <Image publicId={this.state.imageUrl}>
+        <Transformation width="200" height="200" gravity="face" radius="max" crop="fill" />
+      </Image>
+    </CloudinaryContext>
+  </div>
+  : null}
         <Button variant="raised" className="rounded-btn rounded-btn--squarish" color="secondary" size="large" onClick={this.getSvgTag}>
           Approve and send for Printing
       </Button>
@@ -158,15 +168,7 @@ export default class ImageUpload extends Component {
        
 
 
-        {/* {this.state.upload ?
-          <div>
-            <CloudinaryContext cloudName="dtt2cdx79">
-              <Image publicId={this.state.imageUrl}>
-                <Transformation width="200" height="200" gravity="face" radius="max" crop="fill" />
-              </Image>
-            </CloudinaryContext>
-          </div>
-          : null */}
+        {/*  */}
         
 
       </div>
