@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ImageUpload from '../bookPersonalisation/imageUpload';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { blue, red } from '@material-ui/core/colors/';

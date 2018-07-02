@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Navbar, Button } from 'react-bootstrap';
+// import logo from './logo.svg';
 import { Link } from 'react-router-dom';
 import './App.css';
-import { Link , Router} from 'react-router-dom';
 import ContentEditor from './container/topContentEditor/contentEditor';
-import { Navigation, Header, Layout, Drawer, Content } from 'react-mdl';
+import { Navigation, Header,  Content } from 'react-mdl';
 
 class App extends Component {
 

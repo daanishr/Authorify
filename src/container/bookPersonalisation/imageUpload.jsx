@@ -1,6 +1,6 @@
-import React, { Component, ComposedComponent } from 'react';
-import { Image } from 'cloudinary-react';
-import { CloudinaryContext, Transformation } from 'cloudinary-react';
+import React, { Component } from 'react';
+// import { Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation } from 'cloudinary-react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
@@ -56,7 +56,7 @@ export default class ImageUpload extends Component {
         // function(error, result) {
         console.log(result);
         console.log('img', newLocal.state.imageUrl);
-        var img = newLocal.state.imageUrl;
+        //var img = newLocal.state.imageUrl;
         // console.log('win1', window.cloudinary);
         // cloudinary
         //   .imageTag(
@@ -139,7 +139,7 @@ export default class ImageUpload extends Component {
 
   render() {
     console.log(this.state.imageUrl);
-    const { height, width, ...other } = this.props;
+    //const { height, width, ...other } = this.props;
     return (
       <div>
         {/* <Image cloudName="dtt2cdx79" publicId="book_cover" width="500" crop="scale"/>      
