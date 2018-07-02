@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import { Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './App.css';
-import imageUpload from './container/imageUpload';
-import ContentEditor from './container/contentEditor';
-import Auth from './Auth.js';
+import { Link , Router} from 'react-router-dom';
+import ContentEditor from './container/topContentEditor/contentEditor';
 import { Navigation, Header, Layout, Drawer, Content } from 'react-mdl';
+
 class App extends Component {
 
   goTo(route) {
@@ -25,21 +25,18 @@ class App extends Component {
     // const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="demo-big-content">
-        <Layout>
+      <div className="App">
+
           <Header className="header-color" title={<Link to="/"> Authorify</Link>} scroll>
             <Navigation>
               <Link to="/"> Home</Link>
               <Link to="/contentEditor"> Content Editor</Link>
-
             </Navigation>
           </Header>
           <Content>
             <div className="page-content" />
-            <ContentEditor />
+            < ContentEditor/>
           </Content >
-        </Layout>
-
       </div>
     )
   }
