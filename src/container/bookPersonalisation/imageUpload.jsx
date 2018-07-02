@@ -3,7 +3,6 @@ import { Image } from 'cloudinary-react';
 import { CloudinaryContext, Transformation } from 'cloudinary-react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import SvgMap from './svgPanel';
 
 export default class ImageUpload extends Component {
   constructor(props) {
@@ -52,7 +51,7 @@ export default class ImageUpload extends Component {
         ],
         upload_preset: 'vr2jxj7j',
       },
-      function(error, result) {
+      function (error, result) {
         console.log(error, result);
         // function(error, result) {
         console.log(result);
@@ -107,12 +106,12 @@ export default class ImageUpload extends Component {
 
         // 'http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png',
       })
-      .then(function(response) {
+      .then(function (response) {
         console.log(response);
         console.log(response.data);
         window.open(response.data);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         alert(error);
       });
@@ -178,7 +177,14 @@ export default class ImageUpload extends Component {
             />
           </label>
         </form>
-        <Button onClick={this.handleUpload}>Upload</Button>
+        <Button 
+         variant="raised"
+         className="rounded-btn rounded-btn--squarish"
+         color="primary"
+         size="large"
+        onClick={this.handleUpload}
+        
+        >Upload</Button>
         <svg id="svgTag" viewBox="0 0 331 246">
           <rect width="331" height="331" fill="black" />
           <rect x="165" y="0" width="15" height="331" fill="white" />
@@ -190,23 +196,26 @@ export default class ImageUpload extends Component {
             strokeWidth="1"
             fill="yellow"
           />
-          {/* <div> */}
-          <image
-            href={this.state.imageUrl}
-            // href="https://www.google.com/photos/about/static/images/google.svg"
-            x="230"
-            y="70"
-            width="50px"
-            height="30px"
-            radius="140"
-          />
-          {/* </div> */}
+
+          {this.state.upload ? (
+            <image
+              href={this.state.imageUrl}
+              // href="https://www.google.com/photos/about/static/images/google.svg"
+              x="230"
+              y="70"
+              width="50px"
+              height="30px"
+              radius="140"
+            />
+          ) : null}
+
+
 
           <text
             x="220"
             y="45"
-            font-family="Courier"
-            font-size="10"
+            fontamily="Courier"
+            fontSize="10"
             fill="red"
             className="large"
           >
@@ -215,8 +224,8 @@ export default class ImageUpload extends Component {
           <text
             x="220"
             y="180"
-            font-family="Helvetica"
-            font-size="9"
+            fontFamily="Helvetica"
+            fontSize="9"
             fill="white"
             className="large"
           >
@@ -224,7 +233,7 @@ export default class ImageUpload extends Component {
           </text>
         </svg>
 
-        {this.state.upload ? (
+        {/* {this.state.upload ? (
           <div>
             <CloudinaryContext cloudName="dtt2cdx79">
               <Image publicId={this.state.imageUrl}>
@@ -238,7 +247,7 @@ export default class ImageUpload extends Component {
               </Image>
             </CloudinaryContext>
           </div>
-        ) : null}
+        ) : null} */}
         <Button
           variant="raised"
           className="rounded-btn rounded-btn--squarish"
