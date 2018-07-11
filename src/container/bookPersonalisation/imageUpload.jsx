@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
-// import { Image } from 'cloudinary-react';
-// import { CloudinaryContext, Transformation } from 'cloudinary-react';
+import React, { Component, ComposedComponent } from 'react';
+import { Image } from 'cloudinary-react';
+import { CloudinaryContext, Transformation } from 'cloudinary-react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+
+// import BookCover1 from './BookCover1.jpg';
+
+import Cover1 from '../Cover1.png';
 
 export default class ImageUpload extends Component {
   constructor(props) {
@@ -13,8 +17,8 @@ export default class ImageUpload extends Component {
       imageUploadId: '123',
       imageUrl: 'user/upload.png',
       bookTitle: 'Book Title goes here',
-      value: 'Book Title',
-      author: 'Author goes here',
+      value: 'Book Title ',
+      author: 'Author of Book',
       spine: 'Spine for book',
     };
     this.handleUpload = this.handleUpload.bind(this);
@@ -51,36 +55,18 @@ export default class ImageUpload extends Component {
         ],
         upload_preset: 'vr2jxj7j',
       },
-      function (error, result) {
+      function(error, result) {
         console.log(error, result);
-        // function(error, result) {
-        console.log(result);
+        // console.log(result);
         console.log('img', newLocal.state.imageUrl);
-        //var img = newLocal.state.imageUrl;
-        // console.log('win1', window.cloudinary);
-        // cloudinary
-        //   .imageTag(
-        //     { img },
-        //     {
-        //       transformation: [
-        //         { effect: 'cartoonify' },
-        //         { radius: 'max' },
-        //         { effect: 'outline:100', color: 'lightblue' },
-        //         { background: 'lightblue' },
-        //         { height: 300, crop: 'scale' },
-        //       ],
-        //     }
-        //   )
-        //   .toHtml();
+        var img = newLocal.state.imageUrl;
 
         newLocal.setState({
           upload: true,
-          imageUrl: result[0].url,
+          imageUrl: result[0].eager[0].url,
           gravity: 'face',
           radius: '140',
           crop: 'thumb',
-
-          // imageUrl: 'user/' + newLocal.state.imageUploadId + '.png',
         });
       }
     );
@@ -101,17 +87,13 @@ export default class ImageUpload extends Component {
     axios
       .post('http://127.0.0.1:3002/createcover', {
         svg: reqSVG,
-        // image:
-        // 'http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_400,r_max,w_600/v1/user/upload.png',
-
-        // 'http://res.cloudinary.com/dtt2cdx79/image/upload/c_fill,g_face,h_200,r_max,w_200/v1/user/upload.png',
       })
-      .then(function (response) {
+      .then(function(response) {
         console.log(response);
         console.log(response.data);
         window.open(response.data);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
         alert(error);
       });
@@ -120,7 +102,6 @@ export default class ImageUpload extends Component {
   handleBookChange(event) {
     this.setState({ value: event.target.value });
     console.log(this.state.value);
-    //this.setState({author: event.target.author});
   }
 
   handleAuthorChange(event) {
@@ -133,25 +114,15 @@ export default class ImageUpload extends Component {
   }
   handleSubmit(event) {
     alert('Book title' + this.state.bookTitle);
-    //alert('Author' + this.state.author);
+
     event.preventDefault();
   }
 
   render() {
-    console.log(this.state.imageUrl);
-    //const { height, width, ...other } = this.props;
+    console.log('img url=', this.state.imageUrl);
+    const { height, width, ...other } = this.props;
     return (
       <div>
-        {/* <Image cloudName="dtt2cdx79" publicId="book_cover" width="500" crop="scale"/>      
-                <CloudinaryContext cloudName="dtt2cdx79">
-                    <Image publicId="book_cover">
-                        <Transformation width="200" height="200" gravity="face" radius="max" crop="fill"/>
-                    </Image>
-            </CloudinaryContext>
-       <input type="file" onChange={this.fileChangedHandler}/>
-       <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-        </Button> */}
         <form onSubmit={this.handleSubmit}>
           <label>
             Book Title:
@@ -161,6 +132,7 @@ export default class ImageUpload extends Component {
               onChange={this.handleBookChange}
             />
           </label>
+          &nbsp;&nbsp;
           <label>
             Author Name:
             <input
@@ -168,6 +140,7 @@ export default class ImageUpload extends Component {
               onChange={this.handleAuthorChange}
             />
           </label>
+          &nbsp;&nbsp;
           <label>
             Spine Text:
             <input
@@ -177,63 +150,87 @@ export default class ImageUpload extends Component {
             />
           </label>
         </form>
-        <Button 
-         variant="raised"
-         className="rounded-btn rounded-btn--squarish"
-         color="primary"
-         size="large"
-        onClick={this.handleUpload}
-        
-        >Upload</Button>
+        <br />
+        <Button onClick={this.handleUpload}>Upload</Button>
+        <br />
         <svg id="svgTag" viewBox="0 0 331 246">
-          <rect width="331" height="331" fill="black" />
-          <rect x="165" y="0" width="15" height="331" fill="white" />
-          <circle
+          <image
+            x="20"
+            y="0"
+            height="246"
+            width="300"
+            fill="white"
+            href={Cover1}
+          />
+          {/* #0F496D */}
+          {/* <rect width="315" height="230" x="8" fill="#121630" />
+          <rect x="160" y="0" width="10" height="230" fill="white" /> */}
+          {/* <circle
             cx="50"
             cy="150"
             r="20"
             stroke="black"
-            strokeWidth="1"
+            stroke-width="1"
             fill="yellow"
-          />
-
+          /> */}
+          <text
+            x="70"
+            y="40"
+            // font-family="Courier"
+            fontFamily="Noto Sans CJK TC BOLD"
+            font-size="10"
+            fill="orange"
+            class="large"
+          >
+            {this.state.value}
+          </text>
           {this.state.upload ? (
             <image
+              // href="user/upload.png"
               href={this.state.imageUrl}
-              // href="https://www.google.com/photos/about/static/images/google.svg"
-              x="230"
-              y="70"
-              width="50px"
-              height="30px"
+              x="25"
+              y="150"
+              width="30"
+              height="40"
               radius="140"
+              fill="white"
             />
           ) : null}
-
-
-
+          }
+          {/* <rect x="25" y="150" width="30" height="40" fill="white" /> */}
+          {/* <image
+            // href="user/upload.png"
+            href={this.state.imageUrl}
+            x="230"
+            y="70"
+            width="50px"
+            height="30px"
+            radius="140"
+          /> */}
           <text
-            x="220"
-            y="45"
-            fontamily="Courier"
-            fontSize="10"
-            fill="red"
-            className="large"
+            x="190"
+            y="85"
+            // font-family="Courier"
+            fontFamily="Noto Sans CJK TC BOLD"
+            font-size="14"
+            fill="orange"
+            class="large"
           >
             {this.state.value}
           </text>
           <text
-            x="220"
-            y="180"
-            fontFamily="Helvetica"
-            fontSize="9"
-            fill="white"
-            className="large"
+            x="205"
+            y="220"
+            // font-family="Helvetica"
+            fontFamily="Noto Sans CJK TC BOLD"
+            font-size="10"
+            fill="orange"
+            class="large"
           >
-            {this.state.author}
+            {this.state.author}zcc
           </text>
         </svg>
-
-        {/* {this.state.upload ? (
+        {this.state.upload ? (
           <div>
             <CloudinaryContext cloudName="dtt2cdx79">
               <Image publicId={this.state.imageUrl}>
@@ -243,11 +240,12 @@ export default class ImageUpload extends Component {
                   gravity="face"
                   radius="max"
                   crop="fill"
+                  background_removal="remove_the_background"
                 />
               </Image>
             </CloudinaryContext>
           </div>
-        ) : null} */}
+        ) : null}
         <Button
           variant="raised"
           className="rounded-btn rounded-btn--squarish"
@@ -257,8 +255,7 @@ export default class ImageUpload extends Component {
         >
           Approve and send for Printing
         </Button>
-
-        {/*  */}
+        <br /> <br /> <br />
       </div>
     );
   }
